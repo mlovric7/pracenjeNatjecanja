@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "npm run clean; tsc; npm run copy-views; npm run copy-views",
+    "clean": "rm -rf dist",
+    "copy-views": "cp -r src/views/ dist/views/",
     "start": "tsc && npm run dev",
-    "build": "tsc",
     "dev": "DEBUG=app:app node ./dist/server.js"
   },
   "dependencies": {

@@ -59,6 +59,8 @@ function onError(error: { syscall: string; code: any; }) {
 
 function onListening() {
     const addr = server.address();
+    debug(addr)
+    debug(process.env.RENDER_EXTERNAL_URL)
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         // @ts-ignore
