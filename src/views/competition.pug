@@ -1,0 +1,59 @@
+extends layout
+
+block content
+    div
+        h1 #{competitionName}
+    .row
+        .col-3
+            div.mt-2.tooltip-my
+                button.btn.btn-primary(onclick='copyLink();', onmouseout='outFunc();') Kopiraj link na natjecanje
+                    span.tooltiptext#myTooltip Kopiraj Link
+        if canEdit
+            .col-2
+                div.mt-2
+                    a.btn.btn-primary(href='/competitions/results/' + competitionId) Unesi/izmjeni rezultate
+    .row
+        .col-md-6
+            h2.mt-3 Kola natjecanja
+            table.table.table-striped-columns
+                tbody
+                    each match in matches
+                        if match.round !== currentRound
+                            - currentRound = match.round
+                            tr
+                                th(colspan=3)
+                                    h4(class=currentRound !== 1 ? 'round-header': '') #{match.round}. Kolo:
+                        tr.text-center.align-middle
+                            td
+                                if match.outcome === 'competitor1'
+                                    p Winner
+                                    p.winner #{match.competitor1_name}
+                                else
+                                    p #{match.competitor1_name}
+                            td
+                                p VS
+                                if match.outcome
+                                    if match.outcome === 'draw'
+                                        p Finished in a draw
+                                    else
+                                        p Finished
+                            td
+                                if match.outcome === 'competitor2'
+                                    p Winner
+                                    p.winner #{match.competitor2_name}
+                                else
+                                    p #{match.competitor2_name}
+        .col-md-6
+            h2 Poredak natjecatelja
+            table.table.table-striped
+                thead
+                    tr
+                        th #
+                        th Natjecatelj
+                        th Bodovi
+                tbody
+                    each competitor, index in competitors
+                        tr
+                            td #{index+1}.
+                            td= competitor.name
+                            td= competitor.points

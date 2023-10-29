@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "module": "commonjs",
+    "declaration": true,
+    "strictNullChecks": true,
+    "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "esModuleInterop": true,
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  },
+  "assets": ["src/"],
+  "watchAssets": true,
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

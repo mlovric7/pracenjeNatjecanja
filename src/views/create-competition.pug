@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    div.container
+        h1 Unos Natjecanja
+        form(action="/users/competition/new" method="POST").form
+            label(for="competitionName") Naziv Natjecanja
+            input#competitionName.form-control(type="text" name="competitionName" required).mb-4
+
+            label(for="competitors") Popis Natjecatelja (Odvojeni tockom zarez ili novim redovima)
+            textarea#competitors.form-control(name="competitors" rows="8" required).mb-4
+
+            label(for="scoringSystem") Sustav Bodovanja u obliku:
+                |
+                code pobjeda/remi/poraz
+            input#scoringSystem.form-control(type="text" name="scoringSystem" required).mb-4
+            button.btn.btn-primary(type="submit").mt-2 Stvori Natjecanje

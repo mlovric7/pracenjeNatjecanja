@@ -1,0 +1,82 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.bg-light-gray {
+  background-color: #cbc6c6;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.navbar-font {
+  font-size: large;
+}
+
+.competitions-container {
+  max-width: 350px !important;
+  margin: 0 auto;
+  font-size: large;
+}
+
+code {
+  background: #ffeff0;
+  word-wrap: break-word;
+  box-decoration-break: clone;
+  padding: .1rem .3rem .2rem;
+  border-radius: .2rem;
+}
+
+.round-header {
+  margin-top: 40px;
+}
+
+.finished {
+  background-color: #e0e0e0; /* Change the background color for finished matches */
+  font-weight: bold; /* Make the text bold for finished matches */
+  color: #555; /* Change the text color for finished matches */
+}
+
+.winner {
+  background-color: #FFD700; /* Change the background color for the winner's name */
+  color: #0028ff; /* Change the text color for the winner's name */
+}
+
+.tooltip-my {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-my .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-my .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip-my:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
