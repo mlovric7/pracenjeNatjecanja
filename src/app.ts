@@ -46,6 +46,8 @@ const config = {
     issuerBaseURL: 'https://dev-sbtldc17fw6qgphd.eu.auth0.com'
 };
 
+console.log(config)
+
 app.use(auth(config));
 
 app.use('/', indexRouter);
