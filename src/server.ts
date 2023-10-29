@@ -9,21 +9,38 @@ import https from 'https';
 import fs from 'fs'
 
 const debug = require('debug')('app:app');
-/**
- * Create HTTP app.
- */
-const server = https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
-}, app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+if(process.env.RENDER_EXTERNAL_URL) {
+    const hostname = '0.0.0.0';
+    app.listen(app.get('port'), hostname)
+} else {
+    const server = https.createServer({
+        key: fs.readFileSync('server.key'),
+        cert: fs.readFileSync('server.cert')
+    }, app);
 
-server.listen(app.get('port'));
-server.on('error', onError);
-server.on('listening', onListening);
+    server.listen(app.get('port'));
+    server.on('error', onError);
+    server.on('listening', onListening);
+
+    /**
+     * Event listener for HTTP app "listening" event.
+     */
+
+    function onListening() {
+        const addr = server.address();
+        debug(addr)
+        debug(process.env.RENDER_EXTERNAL_URL)
+        const bind = typeof addr === 'string'
+            ? 'pipe ' + addr
+            // @ts-ignore
+            : 'port ' + addr.port;
+        debug('Listening on ' + bind);
+        debug('App link: https://localhost:' + app.get('port'))
+    }
+
+}
+
 
 /**
  * Event listener for HTTP app "error" event.
@@ -53,18 +70,3 @@ function onError(error: { syscall: string; code: any; }) {
     }
 }
 
-/**
- * Event listener for HTTP app "listening" event.
- */
-
-function onListening() {
-    const addr = server.address();
-    debug(addr)
-    debug(process.env.RENDER_EXTERNAL_URL)
-    const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        // @ts-ignore
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
-    debug('App link: https://localhost:' + app.get('port'))
-}
