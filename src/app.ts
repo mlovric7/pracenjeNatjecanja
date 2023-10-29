@@ -32,15 +32,15 @@ app.use('/css', express.static(path.join(__dirname, '..//node_modules/bootstrap/
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 300;
+
 app.set('port', port);
-
-
 const config = {
     authRequired: false,
     auth0Logout: true,
     secret: process.env.SECRET,
-    baseURL: `https://localhost:${port}`,
+    baseURL: externalUrl || `https://localhost:${port}`,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     issuerBaseURL: 'https://dev-sbtldc17fw6qgphd.eu.auth0.com'
