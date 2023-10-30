@@ -33,7 +33,7 @@ app.use('/css', express.static(path.join(__dirname, '..//node_modules/bootstrap/
  */
 
 const externalUrl = process.env.RENDER_EXTERNAL_URL;
-const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 300;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 app.set('port', port);
 const config = {
